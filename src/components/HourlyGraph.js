@@ -84,17 +84,10 @@ export default function HourlyGraph({hours}) {
                 fill='url(#tempGradient)'
                 stroke='none'
                 d={tempArea(hourlyTemps)}
-                // d={tempArea(testTemps)}
             />
             {tempLabels}
             <line x1={0} x2={36} y1={11} y2={11} stroke='black' strokeWidth='.1px'/>
             {hourLabels}
-            {/*<path*/}
-            {/*    fill='none'*/}
-            {/*    stroke='black'*/}
-            {/*    style={{strokeWidth: '.1px'}}*/}
-            {/*    d={tempLine(hourlyTemps)}*/}
-            {/*/>*/}
         </svg>)
     }
 
