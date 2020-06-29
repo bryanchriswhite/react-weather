@@ -20,7 +20,9 @@ const useStyles = makeStyles({
     svg: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
         '& path': {
-            transition: 'd 500ms'
+            transition: 'd 500ms',
+            transform: 'scaleY(-1) translate(0, 4px)',
+            transformOrigin: 'center',
         },
     }
 })
@@ -51,7 +53,7 @@ export default function HourlyGraph({hours}) {
                     {time}
                 </text>
             )
-        }).flat()
+        })
         const tempLabels = hourlyTemps.map((temp, i) => {
             temp = parseInt(temp, 10)
             return (
@@ -59,7 +61,7 @@ export default function HourlyGraph({hours}) {
                     key={i}
                     className={classes.tempLabel}
                     x={i * 3 - 1.75}
-                    y={`${temp / 3 + 2}`}
+                    y={`${12 - (temp / 3 + 2)}`}
                     >
                     {temp}
                 </text>
