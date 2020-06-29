@@ -41,5 +41,3 @@ export const defaultState = {
         minRain: 10,
     }
 };
-
-export const defaultSettings = {}

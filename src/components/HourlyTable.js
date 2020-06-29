@@ -3,13 +3,13 @@ import moment from 'moment';
 
 import {
     Paper,
-    Typography,
-    TableContainer,
     Table,
-    TableHead,
     TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
     TableRow,
-    TableCell
+    Typography,
 } from "@material-ui/core";
 import {Navigation} from "@material-ui/icons";
 
@@ -20,6 +20,7 @@ export default function HourlyTable({hours}) {
         return '';
     }
 
+    // TODO: add settings for units
     const head = (
         <TableHead>
             <TableRow>
@@ -30,12 +31,12 @@ export default function HourlyTable({hours}) {
                 </TableCell>
                 <TableCell>
                     <Typography>
-                        Temp.
+                        Temp. (&#176;c)
                     </Typography>
                 </TableCell>
                 <TableCell>
                     <Typography>
-                        Precip.
+                        Rain (mm)
                     </Typography>
                 </TableCell>
                 <TableCell>
@@ -49,6 +50,17 @@ export default function HourlyTable({hours}) {
 
     // TODO: insert date row every new day...
     const hourRows = hours.map(hour => {
+        const now = moment.utc();
+
+        const daysTillHour = moment.duration(
+            moment.unix(hour.dt).diff(now)
+        ).days();
+
+        let rain = '--';
+        if (hour.rain && hour.rain['1h']) {
+            rain = hour.rain['1h']
+        }
+
         return (
             <TableRow key={hour.dt}>
                 <TableCell>
@@ -58,7 +70,7 @@ export default function HourlyTable({hours}) {
                     {kelvinToC(hour.temp)}
                 </TableCell>
                 <TableCell>
-                    --
+                    {rain}
                 </TableCell>
                 <TableCell style={{display: 'flex'}}>
                     <Navigation style={{transform: `rotate(${hour.wind_deg}deg`}}/>

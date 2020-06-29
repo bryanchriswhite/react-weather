@@ -63,7 +63,7 @@ function App() {
 
     return (
         <div className="App">
-            <Container maxWidth={'sm'}>
+            <Container maxWidth='sm'>
                 <MainWeather
                     location={location}
                     setLocation={setLocation}
@@ -76,7 +76,7 @@ function App() {
                 <HourlyTable
                     hours={hourly}
                 />
-                <FabOverlay settings={settings} setSettings={setSettings}/>
+                <FabOverlay hourlyWeather={hourly} settings={settings} setSettings={setSettings}/>
             </Container>
         </div>
     );
