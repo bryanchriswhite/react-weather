@@ -7,6 +7,7 @@ import {
     Container,
     Drawer,
     Fab,
+    Fade,
     Grid,
     List,
     ListItem,
@@ -136,9 +137,11 @@ export default function FabOverlay({hourlyWeather, settings, setSettings}) {
             open={modalOpen}
             onClose={closeModal}
         >
-            <Container maxWidth='xs' style={{outline: 'none'}}>
-                {cards}
-            </Container>
+            <Fade in={modalOpen}>
+                <Container maxWidth='xs' style={{outline: 'none'}}>
+                    {cards}
+                </Container>
+            </Fade>
         </Modal>
         <Grid container className={classes.fixedGrid} spacing={3}>
             <Grid item xs={12}>

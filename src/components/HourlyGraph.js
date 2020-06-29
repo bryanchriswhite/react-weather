@@ -19,6 +19,9 @@ const useStyles = makeStyles({
     },
     svg: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        '& path': {
+            transition: 'd 500ms'
+        },
     }
 })
 

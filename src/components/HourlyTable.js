@@ -60,10 +60,26 @@ export default function HourlyTable({hours}) {
             rain = hour.rain['1h']
         }
 
-        return (
+        let newDayRow = '';
+        const hourMoment = moment.unix(hour.dt);
+        const time = hourMoment.format('HH:mm')
+        if (time === '00:00') {
+            newDayRow = (
+                <TableRow key={hourMoment.format('MMDD')}>
+                    <TableCell colSpan={4} align='center' style={{backgroundColor: '#f1f1f1'}}>
+                        <Typography variant='h6'>
+                            {hourMoment.format('ddd, MMM DD')}
+                        </Typography>
+                    </TableCell>
+                </TableRow>
+            )
+        }
+
+        return (<>
+            {newDayRow}
             <TableRow key={hour.dt}>
                 <TableCell>
-                    {moment.unix(hour.dt).format('HH:mm')}
+                    {time}
                 </TableCell>
                 <TableCell>
                     {kelvinToC(hour.temp)}
@@ -78,7 +94,7 @@ export default function HourlyTable({hours}) {
                     </Typography>
                 </TableCell>
             </TableRow>
-        )
+        </>)
     })
 
     return (
