@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import {Navigation} from "@material-ui/icons";
 import {
+    Box,
     makeStyles,
     Paper,
     Table,
@@ -97,11 +98,13 @@ export default function HourlyTable({hours}) {
                 <TableCell>
                     {rain}
                 </TableCell>
-                <TableCell style={{display: 'flex'}}>
-                    <Navigation style={{transform: `rotate(${hour.wind_deg}deg`}}/>
-                    <Typography component='span' style={{marginLeft: '10px'}}>
-                        {formatWindSpeed(hour.wind_speed)}
-                    </Typography>
+                <TableCell>
+                    <Box style={{display: 'flex'}}>
+                        <Navigation style={{transform: `rotate(${hour.wind_deg}deg`}}/>
+                        <Typography component='span' style={{marginLeft: '10px'}}>
+                            {formatWindSpeed(hour.wind_speed)}
+                        </Typography>
+                    </Box>
                 </TableCell>
             </TableRow>
         </>)
