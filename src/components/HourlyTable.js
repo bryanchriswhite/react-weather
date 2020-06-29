@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import {Navigation} from "@material-ui/icons";
 import {
+    makeStyles,
     Paper,
     Table,
     TableBody,
@@ -14,7 +15,16 @@ import {
 
 import {kelvinToC, mpsToKPH} from "../util";
 
+const useStyles = makeStyles({
+    table: {
+        '& td, & th': {
+            textAlign: 'center'
+        }
+    }
+})
+
 export default function HourlyTable({hours}) {
+    const classes = useStyles();
     if (!hours || hours.length == 0) {
         return '';
     }
@@ -66,7 +76,7 @@ export default function HourlyTable({hours}) {
         if (time === '00:00') {
             newDayRow = (
                 <TableRow key={hourMoment.format('MMDD')}>
-                    <TableCell colSpan={4} align='center' style={{backgroundColor: '#f1f1f1'}}>
+                    <TableCell colSpan={4} style={{backgroundColor: '#f1f1f1'}}>
                         <Typography variant='h6'>
                             {hourMoment.format('ddd, MMM DD')}
                         </Typography>
@@ -99,7 +109,7 @@ export default function HourlyTable({hours}) {
 
     return (
         <TableContainer component={Paper}>
-            <Table>
+            <Table className={classes.table}>
                 {head}
                 <TableBody>
                     {hourRows}
