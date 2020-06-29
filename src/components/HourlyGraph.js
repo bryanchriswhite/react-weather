@@ -24,9 +24,9 @@ export default function HourlyGraph({hours}) {
     const classes = useStyles();
     const tempArea = area()
         .x((_, i) => (i * 3) - 1)
-        .y1(h =>  h)
+        .y1(h =>  h / 3)
         .y0(_ => 0)
-        // .curve(curveBasis);
+        .curve(curveBasis);
 
     const tempLine = line()
         .x((hour, i) => i * 3)
@@ -47,12 +47,13 @@ export default function HourlyGraph({hours}) {
 
         const hourLabels = hours.map((hour, i) => {
             const time = moment.unix(hour.dt).format('HH:mm');
+            const y = i % 2 == 0 ? 14 : 15;
             return (
                 <text
                     // className={classes.textTransform}
-                    fontSize='1px'
+                    fontSize='1.5px'
                     x={i * 3}
-                    y={30}
+                    y={y}
                     key={hour.dt}
                 >
                     {time}
@@ -63,9 +64,9 @@ export default function HourlyGraph({hours}) {
             return (
                 <text
                     key={i}
-                    fontSize='1px'
+                    fontSize='2px'
                     x={i * 3 - (i * .25)}
-                    y={`${temp}`}
+                    y={`${parseInt(temp, 10) / 3 + 2}`}
                     >
                     {temp}
                 </text>
@@ -77,7 +78,7 @@ export default function HourlyGraph({hours}) {
         tempGraph = (<svg
             preserveAspectRatio='xMinYMin slice'
             // viewBox={`0 0 24 ${maxTemp}`}
-            viewBox={`0 0 48 31`}
+            viewBox={`0 0 36 15`}
         >
             <defs>
                 <linearGradient id='tempGradient' gradientTransform='rotate(90)'>
