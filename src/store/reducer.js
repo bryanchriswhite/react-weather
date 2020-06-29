@@ -12,10 +12,18 @@ export function reducer(state, action) {
         case 'setHour':
             const {hour} = action;
             return {...state, hour};
+        case 'setSettings':
+            const {settings} = action;
+            return {
+                ...state, settings: {
+                    ...state.settings,
+                    ...settings
+                }
+            }
         default:
             throw new Error('unknown action');
     }
-};
+}
 
 export const defaultState = {
     location: {
@@ -28,4 +36,10 @@ export const defaultState = {
         current: {},
         daily: [{temp: {}}]
     },
+    settings: {
+        maxWind: 15,
+        minRain: 10,
+    }
 };
+
+export const defaultSettings = {}

@@ -47,6 +47,7 @@ export default function HourlyTable({hours}) {
         </TableHead>
     )
 
+    // TODO: insert date row every new day...
     const hourRows = hours.map(hour => {
         return (
             <TableRow key={hour.dt}>
