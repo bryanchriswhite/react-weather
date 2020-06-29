@@ -3,7 +3,7 @@ export function kelvinToC(kelvin) {
     if (isNaN(temp)) {
         return '--'
     }
-    return `${temp}`;
+    return temp;
 }
 
 export function mpsToKPH(mps) {

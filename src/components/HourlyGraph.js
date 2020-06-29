@@ -55,7 +55,6 @@ export default function HourlyGraph({hours}) {
             )
         })
         const tempLabels = hourlyTemps.map((temp, i) => {
-            temp = parseInt(temp, 10)
             return (
                 <text
                     key={i}
