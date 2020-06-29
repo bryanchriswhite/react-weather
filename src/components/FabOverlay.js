@@ -13,7 +13,6 @@ import {
     ListItemText,
     makeStyles,
     Modal,
-    Paper,
     Slider,
 } from "@material-ui/core";
 
@@ -106,7 +105,7 @@ export default function FabOverlay({hourlyWeather, settings, setSettings}) {
     if (totalRain < minRain) {
         cards.push(
             <Card className={classes.card}>
-                <CardHeader title='Water the Plants!'/>
+                <CardHeader title='Water the plants!'/>
                 <CardContent>
                     It's only going to rain {Math.round(totalRain * 100) / 100}mm in the next 48 hours.
                 </CardContent>
@@ -117,7 +116,7 @@ export default function FabOverlay({hourlyWeather, settings, setSettings}) {
     if (peekWind > maxWind) {
         cards.push(
             <Card className={classes.card}>
-                <CardHeader title='Bring the pants in!'/>
+                <CardHeader title='Bring the plants in!'/>
                 <CardContent>
                     The wind is supposed to peek at {Math.round(peekWind * 100) / 100}km/h in the next 48 hours.
                 </CardContent>

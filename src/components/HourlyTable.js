@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-
+import {Navigation} from "@material-ui/icons";
 import {
     Paper,
     Table,
@@ -11,7 +11,6 @@ import {
     TableRow,
     Typography,
 } from "@material-ui/core";
-import {Navigation} from "@material-ui/icons";
 
 import {kelvinToC, mpsToKPH} from "../util";
 

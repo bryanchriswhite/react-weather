@@ -8,7 +8,6 @@ import HourlyGraph from "./components/HourlyGraph";
 import FabOverlay from "./components/FabOverlay";
 import {defaultState, reducer} from "./store/reducer";
 
-// const WEATHER_URL = 'sample.json'
 const WEATHER_URL = 'https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=9052b1a9ec107a8d04ddc0818c7f8e59'
 const ICON_URL_TEMPLATE = 'https://openweathermap.org/img/wn/$@2x.png'
 

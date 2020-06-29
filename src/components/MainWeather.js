@@ -1,17 +1,20 @@
-import React, {useState, useReducer} from 'react';
-import {Typography, Container, TextField, Paper, Grid, Box, makeStyles} from '@material-ui/core';
+import React from 'react';
 import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
 import {Autocomplete} from '@material-ui/lab';
 import moment from 'moment';
+import {
+    Grid,
+    makeStyles,
+    Paper,
+    TextField,
+    Typography,
+} from '@material-ui/core';
 
-import {reducer, defaultState} from "../store/reducer";
 import {kelvinToC} from "../util";
 
-
 const cities = require('../cities.json');
-const cityNames = Object.keys(cities);
-const cityMap = Object.values(cities).map(([lat, lon], i) => ({
-    city: cityNames[i], lat, lon
+const cityMap = Object.entries(cities).map(([name, [lat, lon]]) => ({
+    city: name, lat, lon
 }))
 
 const useStyles = makeStyles({
