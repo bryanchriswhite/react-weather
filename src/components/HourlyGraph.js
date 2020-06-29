@@ -45,14 +45,14 @@ export default function HourlyGraph({hours}) {
         const maxTemp = Math.max(...hourlyTemps);
 
         const hourLabels = hours.map((hour, i) => {
-            if (i % 2 != 0) {
+            if (i % 2 == 0) {
                 return null;
             }
             const time = moment.unix(hour.dt).format('HH:mm');
             return (
                 <text
                     className={classes.hourLabel}
-                    x={i * 3 + 0.5}
+                    x={i * 3 - 2.5}
                     y={14}
                     key={hour.dt}
                 >
@@ -65,7 +65,7 @@ export default function HourlyGraph({hours}) {
                 <text
                     key={i}
                     className={classes.tempLabel}
-                    x={i * 3 + 0.75}
+                    x={i * 3 - 1.75}
                     y={`${parseInt(temp, 10) / 3 + 2}`}
                     >
                     {temp}
