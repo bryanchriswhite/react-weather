@@ -15,8 +15,15 @@ const useStyles = makeStyles({
         transformOrigin: 'center',
         // transform: 'scaleY(-1)',
     },
-    textTransform: {
-        // transform: 'translate(0, calc(100% + 1px))'
+    hourLabel: {
+        fontSize: '2px'
+    },
+    tempLabel: {
+        fontSize: '1.5px'
+    },
+    svg: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        // fontSize: '1.5px'
     }
 })
 
@@ -32,40 +39,33 @@ export default function HourlyGraph({hours}) {
         .x((hour, i) => i * 3)
         .curve(curveBasis);
 
-    // const precipLine = line()
-    //     .x(hour => {
-    //
-    //     })
-
     let tempGraph = '';
     if (hours) {
         const hourlyTemps = hours.map(h => kelvinToC(h.temp));
-        console.debug(hourlyTemps)
-        // hourlyTemps.unshift({temp: 0})
-        // hourlyTemps.push({temp: 0})
         const maxTemp = Math.max(...hourlyTemps);
 
         const hourLabels = hours.map((hour, i) => {
+            if (i % 2 != 0) {
+                return null;
+            }
             const time = moment.unix(hour.dt).format('HH:mm');
-            const y = i % 2 == 0 ? 14 : 15;
             return (
                 <text
-                    // className={classes.textTransform}
-                    fontSize='1.5px'
-                    x={i * 3}
-                    y={y}
+                    className={classes.hourLabel}
+                    x={i * 3 + 0.5}
+                    y={14}
                     key={hour.dt}
                 >
                     {time}
                 </text>
             )
-        })
+        }).flat()
         const tempLabels = hourlyTemps.map((temp, i) => {
             return (
                 <text
                     key={i}
-                    fontSize='2px'
-                    x={i * 3 - (i * .25)}
+                    className={classes.tempLabel}
+                    x={i * 3 + 0.75}
                     y={`${parseInt(temp, 10) / 3 + 2}`}
                     >
                     {temp}
@@ -76,8 +76,8 @@ export default function HourlyGraph({hours}) {
         const testTemps = ['0', '1', '2', '10', '20', '30'];
 
         tempGraph = (<svg
+            className={classes.svg}
             preserveAspectRatio='xMinYMin slice'
-            // viewBox={`0 0 24 ${maxTemp}`}
             viewBox={`0 0 36 15`}
         >
             <defs>
@@ -88,13 +88,13 @@ export default function HourlyGraph({hours}) {
                 </linearGradient>
             </defs>
             <path
-                className={classes.graphTransform}
                 fill='url(#tempGradient)'
                 stroke='none'
                 d={tempArea(hourlyTemps)}
                 // d={tempArea(testTemps)}
             />
             {tempLabels}
+            <line x1={0} x2={36} y1={11} y2={11} stroke='black' strokeWidth='.1px'/>
             {hourLabels}
             {/*<path*/}
             {/*    fill='none'*/}
