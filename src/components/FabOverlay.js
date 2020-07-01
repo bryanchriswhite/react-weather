@@ -27,7 +27,8 @@ const useStyles = makeStyles({
         left: 0
     },
     card: {
-        margin: '10px'
+        margin: '10px',
+        textAlign: 'center',
     }
 });
 
