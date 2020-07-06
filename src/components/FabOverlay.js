@@ -1,4 +1,4 @@
-import React, {useState, useReducer} from 'react';
+import React, {useState} from 'react';
 import {DirectionsWalk, Home, Settings} from "@material-ui/icons";
 import {
     Card,

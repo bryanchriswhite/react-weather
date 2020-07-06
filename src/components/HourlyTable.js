@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 export default function HourlyTable({hours}) {
     const classes = useStyles();
-    if (!hours || hours.length == 0) {
+    if (!hours || hours.length === 0) {
         return '';
     }
 
@@ -60,12 +60,6 @@ export default function HourlyTable({hours}) {
 
     // TODO: insert date row every new day...
     const hourRows = hours.map(hour => {
-        const now = moment.utc();
-
-        const daysTillHour = moment.duration(
-            moment.unix(hour.dt).diff(now)
-        ).days();
-
         let rain = '--';
         if (hour.rain && hour.rain['1h']) {
             rain = hour.rain['1h']
